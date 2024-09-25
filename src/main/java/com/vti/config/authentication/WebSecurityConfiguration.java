@@ -63,8 +63,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    configuration.setAllowedOrigins(Arrays.asList(
 	        "http://localhost:3000",
 	        "http://localhost:4200",
-	        "https://websever-ohnooo1234s-projects.vercel.app/",
-	        "https://websever-ngcmtiwie-ohnooo1234s-projects.vercel.app"
+	        "https://websever-ohnooo1234s-projects.vercel.app",
+	        "https://websever-ngcmtiwie-ohnooo1234s-projects.vercel.app",
+	        "https://websever.vercel.app"
 	    ));
 	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 	    source.registerCorsConfiguration("/**", configuration);
