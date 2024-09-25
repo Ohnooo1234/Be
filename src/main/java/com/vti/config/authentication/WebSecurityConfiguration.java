@@ -56,16 +56,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Bean
-    CorsConfigurationSource corsConfigurationSource() {
-		final CorsConfiguration configuration = new CorsConfiguration();
+	public CorsConfigurationSource corsConfigurationSource() {
+	    final CorsConfiguration configuration = new CorsConfiguration();
 	    configuration.setAllowedMethods(ImmutableList.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
 	    configuration.applyPermitDefaultValues();
 	    configuration.setAllowedOrigins(Arrays.asList(
-	    		"http://localhost:3000",
-	    		"http://locallhost:4200",
-	    		"https://websever-ohnooo1234s-projects.vercel.app/"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+	        "http://localhost:3000",
+	        "http://localhost:4200",
+	        "https://websever-ohnooo1234s-projects.vercel.app/",
+	        "https://websever-ngcmtiwie-ohnooo1234s-projects.vercel.app"
+	    ));
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", configuration);
+	    return source;
+	}
+
 }
