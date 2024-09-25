@@ -18,6 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.google.common.collect.ImmutableList;
 import com.vti.service.IUserService;
 
+
 @Component
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -60,12 +61,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    CorsConfiguration configuration = new CorsConfiguration();
 	    configuration.setAllowedMethods(ImmutableList.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
 	    configuration.setAllowedOrigins(Arrays.asList(
-	        "http://localhost:3000",
-	        "http://localhost:4200",
-	        "https://websever-ohnooo1234s-projects.vercel.app", // Removed trailing slash
-	        "https://websever-ngcmtiwie-ohnooo1234s-projects.vercel.app", // Removed trailing slash
-	        "https://websever.vercel.app/"
-	    ));
+	    		"http://localhost:3000",
+	    		"http://locallhost:4200",
+	    		"http://locallhost:3060",
+	    		"http://locallhost:8080",
+	    		"https://websever-ohnooo1234s-projects.vercel.app/",
+	    		"https://websever.vercel.app/"));
 	    configuration.setAllowCredentials(true); // Added to allow credentials if needed
 	    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept")); // Set allowed headers if needed
 	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
