@@ -36,6 +36,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		.cors() // Ensure CORS is configured before any other requests are set up
+		.and()
 		.authorizeRequests()
 		.antMatchers("/api/v1/login").anonymous()
 		.antMatchers("/api/v1/users/profile").authenticated()
@@ -43,8 +45,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.anyRequest().permitAll()
 		.and()
 		.httpBasic()
-		.and()
-		.cors()
 		.and()
 		.csrf().disable()
 		.addFilterBefore(
@@ -57,16 +57,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
-	    final CorsConfiguration configuration = new CorsConfiguration();
+	    CorsConfiguration configuration = new CorsConfiguration();
 	    configuration.setAllowedMethods(ImmutableList.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-	    configuration.applyPermitDefaultValues();
 	    configuration.setAllowedOrigins(Arrays.asList(
 	        "http://localhost:3000",
 	        "http://localhost:4200",
-	        "https://websever-ohnooo1234s-projects.vercel.app",
-	        "https://websever-ngcmtiwie-ohnooo1234s-projects.vercel.app",
-	        "https://websever.vercel.app"
+	        "https://websever-ohnooo1234s-projects.vercel.app", // Removed trailing slash
+	        "https://websever-ngcmtiwie-ohnooo1234s-projects.vercel.app", // Removed trailing slash
+	        "https://websever.vercel.app/"
 	    ));
+	    configuration.setAllowCredentials(true); // Added to allow credentials if needed
+	    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept")); // Set allowed headers if needed
 	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 	    source.registerCorsConfiguration("/**", configuration);
 	    return source;
